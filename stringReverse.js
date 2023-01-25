@@ -12,12 +12,12 @@ console.log(reverse(string));
 
 // using built  in method
 
-function reverseBBuiltin(str) {
-    let splitedString = str.split("")
-    let reversed = splitedString.reverse();
-    let joinedString = reversed.join("")
-    return joinedString
-}
+// function reverseBBuiltin(str) {
+//     let splitedString = str.split("")
+//     let reversed = splitedString.reverse();
+//     let joinedString = reversed.join("")
+//     return joinedString
+// }
 
-const data = "hai"
-console.log(reverseBBuiltin(data))
+// const data = "hai"
+// console.log(reverseBBuiltin(data))

@@ -116,6 +116,18 @@ class LinkedList {
         this.head = prev
     }
 
+    bintoDecimal() {
+        let temp = this.head
+        let s = this.size - 1
+        let decimal = 0
+        while (temp) {
+            decimal += temp.value * (2 ** s)
+            temp = temp.next
+            s--;
+        }
+        console.log(decimal);
+    }
+
     print() {
         if (this.isEmpty()) {
             console.log("Empty linked list");
@@ -132,19 +144,10 @@ class LinkedList {
 }
 
 const list = new LinkedList()
-list.append(10)
-list.append(20)
-list.append(30)
-list.prepend(40)
-list.prepend(50)
-list.insert(2, 60)
-list.remove(30)
-list.remove(10)
-list.remove(50)
-list.remove(33)
-list.search(60)
-console.log(list.getSize());
-list.print()
 
-list.reverse()
+list.append(1)
+list.append(0)
+list.append(1)
+
 list.print()
+list.bintoDecimal()
