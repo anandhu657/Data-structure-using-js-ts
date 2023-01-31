@@ -13,4 +13,4 @@ function encode(str, key) {
     console.log(charArray);
 }
 
-encode("haz", 2)
+encode("hai", 2)
