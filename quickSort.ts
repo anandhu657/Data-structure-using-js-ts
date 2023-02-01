@@ -16,7 +16,7 @@ function quickSortHelper(arr: number[], start: number, end: number) {
         if (arr[left] > arr[pivot] && arr[right] < arr[pivot]) {
             swap(arr, left, right)
             left++
-            right++
+            right--
         }
         if (arr[left] <= arr[pivot]) {
             left++
@@ -38,3 +38,4 @@ function swap(arr: number[], i:number, j:number): void {
 
 let arr: number[] = [38, 2, 41, 56, 12, 11, 22, 41]
 console.log(quicksort(arr));
+export{}
