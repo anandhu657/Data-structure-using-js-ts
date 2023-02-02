@@ -13,3 +13,4 @@ function selectionSort(arr: number[]): void {
 
 let arr: number[] = [8, 4, 5, 3, 9, 12, 6]
 selectionSort(arr)
+export{}

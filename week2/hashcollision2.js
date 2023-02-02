@@ -37,6 +37,30 @@ class Hash {
             if (sameKeyItem)
                 return sameKeyItem[1]
         }
-        ret
+        return undefined
+    }
+
+    remove(key) {
+        const index = this.hash(key)
+        let bucket = this.table[index]
+        if (bucket) {
+            let sameKeyItem = bucket.find(item => item[0] === key)
+            if (sameKeyItem)
+                bucket.splice(bucket.indexOf(sameKeyItem), 1)
+        }
+    }
+
+    display() {
+        for (let i = 0; i < this.table.length; i++) {
+            if (this.table[i])
+                console.log(this.table[i]);
+        }
     }
 }
+
+const hashTable = new Hash(5)
+hashTable.set('name', 'anandhu')
+hashTable.set('naem', 'akash')
+console.log(hashTable.get("naem"))
+hashTable.remove('naem')
+hashTable.display()
