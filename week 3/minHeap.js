@@ -1,4 +1,5 @@
 class minHeap {
+
     constructor() {
         this.heap = [null]
     }
@@ -18,7 +19,6 @@ class minHeap {
                 }
             }
         }
-        // console.log(this.heap);
     }
 
     remove() {
@@ -36,6 +36,7 @@ class minHeap {
             let left = 2 * i
             let right = 2 * i + 1
             while (this.heap[i] >= this.heap[left] || this.heap[i] >= this.heap[right]) {
+
                 if (this.heap[left] < this.heap[right]) {
                     [this.heap[i], this.heap[left]] = [this.heap[left], this.heap[i]]
                     i = 2 * i
