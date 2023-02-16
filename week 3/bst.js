@@ -1,22 +1,364 @@
+const treeify = require('treeify')
+// class Node {
+//     constructor(data) {
+//         this.data = data
+//         this.left = this.right = null
+//     }
+// }
+
+// class BinaryTree {
+//     constructor() {
+//         this.root = null
+//     }
+
+//     isEmpty() {
+//         return this.root === null
+//     }
+
+//     insert(value) {
+//         const newNode = new Node(value)
+//         if (this.isEmpty()) {
+//             this.root = newNode
+//         } else {
+//             this.insertHelper(this.root, newNode)
+//         }
+//     }
+
+//     insertHelper(root, newNode) {
+//         if (root.data > newNode.data) {
+//             if (root.left === null) {
+//                 root.left = newNode
+//             } else {
+//                 this.insertHelper(root.left, newNode)
+//             }
+//         } else {
+//             if (root.right === null) {
+//                 root.right = newNode
+//             } else {
+//                 this.insertHelper(root.right, newNode)
+//             }
+//         }
+//     }
+
+//     search(root, value) {
+//         if (!root)
+//             return false
+//         else {
+//             if (root.data === value)
+//                 return true
+//             else if (value < root.data)
+//                 return this.search(root.left, value)
+//             else if (value > root.data)
+//                 return this.search(root.right, value)
+
+//         }
+//     }
+
+//     inOrder(root) {
+//         if (root) {
+//             this.inOrder(root.left)
+//             console.log(root.data);
+//             this.inOrder(root.right)
+//         }
+//     }
+
+//     preOrder(root) {
+//         if (root) {
+//             console.log(root.data);
+//             this.preOrder(root.left)
+//             this.preOrder(root.right)
+//         }
+//     }
+
+//     postOrder(root) {
+//         if (root) {
+//             this.postOrder(root.left)
+//             this.postOrder(root.right)
+//             console.log(root.data);
+//         }
+//     }
+
+//     bfs() {
+//         const queue = []
+//         queue.push(this.root)
+//         while (queue.length) {
+//             let current = queue.shift()
+//             console.log(current.data);
+//             if (current.left)
+//                 queue.push(current.left)
+//             if (current.right)
+//                 queue.push(current.right)
+//         }
+//     }
+
+//     min(root) {
+//         if (!root.left)
+//             return root.data
+//         else
+//             return this.min(root.left)
+//     }
+
+//     max(root) {
+//         if (!root.right)
+//             return root.data
+//         else
+//             return this.max(root.right)
+//     }
+
+//     remove(value) {
+//         this.root = this.removeHelper(this.root, value)
+//     }
+
+//     removeHelper(root, value) {
+//         if (root === null)
+//             return root
+
+//         if (value < root.data)
+//             root.left = this.removeHelper(root.left, value)
+//         else if (value > root.data)
+//             root.right = this.removeHelper(root.right, value)
+//         else {
+//             if (!root.left && !root.right)
+//                 return null
+//             if (!root.left)
+//                 return root.right
+//             else if (!root.right)
+//                 return root.left
+//             root.data = this.min(root.right)
+//             root.right = this.removeHelper(root.right, root.data)
+//         }
+//         return root
+//     }
+// }
+
+// const bst = new BinaryTree()
+// console.log(bst.isEmpty());
+// bst.insert(10)
+// bst.insert(20)
+// bst.insert(9)
+// bst.insert(5)
+// bst.insert(11)
+// console.log(bst.isEmpty());
+
+
+// console.log(bst.search(bst.root, 10))
+// console.log(bst.search(bst.root, 20))
+// console.log(bst.search(bst.root, 9))
+// console.log(bst.search(bst.root, 7));
+
+// console.log("InOrder");
+// bst.inOrder(bst.root)
+
+// console.log("PreOrder");
+// bst.preOrder(bst.root)
+
+// console.log("PostOrder");
+// bst.postOrder(bst.root)
+
+// bst.remove(10)
+
+// console.log("BFS");
+// bst.bfs()
+
+// console.log("minimum ",bst.min(bst.root));
+
+
+
+// class Node {
+//     constructor(value) {
+//         this.value = value
+//         this.left = this.right = null
+//     }
+// }
+
+// class BinarySearchTree {
+//     constructor() {
+//         this.root = null
+//     }
+
+//     isEmpty() {
+//         return this.root === null
+//     }
+
+//     insert(value) {
+//         const newNode = new Node(value)
+//         if (this.isEmpty()) {
+//             this.root = newNode
+//         } else {
+//             this.insertHelper(this.root, newNode)
+//         }
+//     }
+
+//     insertHelper(root, newNode) {
+//         if (newNode.value < root.value) {
+//             if (root.left === null) {
+//                 root.left = newNode
+//             } else {
+//                 this.insertHelper(root.left, newNode)
+//             }
+//         } else if (newNode.value > root.value) {
+//             if (root.right === null) {
+//                 root.right = newNode
+//             } else {
+//                 this.insertHelper(root.right, newNode)
+//             }
+//         }
+//     }
+
+//     search(root, value) {
+//         if (!root) {
+//             return false
+//         } else {
+//             if (value < root.value) {
+//                 return this.search(root.left, value)
+//             } else if (value > root.value) {
+//                 return this.search(root.right, value)
+//             } else {
+//                 return true
+//             }
+//         }
+//     }
+
+//     inOrder(root) {
+//         if (root) {
+//             this.inOrder(root.left)
+//             console.log(root.value);
+//             this.inOrder(root.right)
+//         }
+//     }
+
+//     preOrder(root) {
+//         if (root) {
+//             console.log(root.value)
+//             this.preOrder(root.left)
+//             this.preOrder(root.right)
+//         }
+//     }
+
+//     postOrder(root) {
+//         if (root) {
+//             this.postOrder(root.left)
+//             this.postOrder(root.right)
+//             console.log(root.value);
+//         }
+//     }
+
+//     bsf() {
+//         const queue = []
+//         queue.push(this.root)
+//         while (queue.length) {
+//             let current = queue.shift()
+//             console.log(current.value);
+//             if (current.left) {
+//                 queue.push(current.left)
+//             }
+//             if (current.right) {
+//                 queue.push(current.right)
+//             }
+//         }
+//     }
+
+//     min(root) {
+//         if (root.left === null) {
+//             return root.value
+//         } else {
+//             return this.min(root.left)
+//         }
+//     }
+
+//     max(root) {
+//         if (root.right === null) {
+//             return root.value
+//         } else {
+//             return this.max(root.right)
+//         }
+//     }
+
+//     remove(value) {
+//         this.root = this.removeHelper(this.root, value)
+//     }
+
+//     removeHelper(root, value) {
+//         if (root === null)
+//             return root
+//         if (value < root.value)
+//             root.left = this.removeHelper(root.left, value)
+//         else if (value > root.value)
+//             root.right = this.removeHelper(root.right, value)
+//         else {
+//             if (!root.left && !root.right)
+//                 return null
+//             if (!root.left)
+//                 return root.right
+//             if (!root.right)
+//                 return root.left
+//             root.value = this.min(root.right)
+//             root.right = this.removeHelper(root.right, root.value)
+//         }
+//         return root
+//     }
+
+//     maxDepth(root){
+//         if (root == null) {
+//             return 0
+//         }else{
+//             let leftDepth = this.maxDepth(root.left)
+//             let rightDepth = this.maxDepth(root.right)
+//             return Math.max(leftDepth,rightDepth)+1
+//         }
+//     }
+// }
+
+// const bst = new BinarySearchTree()
+// bst.insert(15)
+// bst.insert(10)
+// bst.insert(18)
+// bst.insert(7)
+// bst.insert(12)
+// bst.insert(17)
+// bst.insert(24)
+// bst.insert(5)
+// bst.insert(16)
+
+// console.log("inorder");
+// bst.inOrder(bst.root)
+
+// console.log("preOrder");
+// bst.preOrder(bst.root)
+
+// console.log("postOrder");
+// bst.postOrder(bst.root)
+
+// console.log("BSF");
+// bst.bsf()
+
+// console.log("Minimum", bst.min(bst.root));
+
+// console.log("Maximum", bst.max(bst.root));
+
+// bst.remove(15)
+
+// console.log("BSF");
+// bst.bsf()
+
+// console.log("height");
+// console.log(bst.maxDepth(bst.root));
+
 class Node {
-    constructor(data) {
-        this.data = data
+    constructor(value) {
+        this.value = value
         this.left = this.right = null
     }
 }
 
-class BinaryTree {
+class BinarySearchTree {
     constructor() {
         this.root = null
     }
 
-    isEmpty() {
-        return this.root === null
-    }
-
     insert(value) {
         const newNode = new Node(value)
-        if (this.isEmpty()) {
+        if (this.root === null) {
             this.root = newNode
         } else {
             this.insertHelper(this.root, newNode)
@@ -24,18 +366,16 @@ class BinaryTree {
     }
 
     insertHelper(root, newNode) {
-        if (root.data > newNode.data) {
-            if (root.left === null) {
+        if (newNode.value < root.value) {
+            if (root.left === null)
                 root.left = newNode
-            } else {
+            else
                 this.insertHelper(root.left, newNode)
-            }
-        } else {
-            if (root.right === null) {
+        } else if (newNode.value > root.value) {
+            if (root.right === null)
                 root.right = newNode
-            } else {
+            else
                 this.insertHelper(root.right, newNode)
-            }
         }
     }
 
@@ -43,65 +383,83 @@ class BinaryTree {
         if (!root)
             return false
         else {
-            if (root.data === value)
-                return true
-            else if (value < root.data)
+            if (value < root.value)
                 return this.search(root.left, value)
-            else if (root.data < value)
+            else if (value > root.value)
                 return this.search(root.right, value)
+            else
+                return true
 
-        }
-    }
-
-    inOrder(root) {
-        if (root) {
-            console.log(root.data);
-            this.inOrder(root.left)
-            this.inOrder(root.right)
         }
     }
 
     preOrder(root) {
-        if (root) {
+        if (root === null)
+            return null
+        else {
+            console.log(root.value);
             this.preOrder(root.left)
-            console.log(root.data);
             this.preOrder(root.right)
         }
     }
 
-    postOrder(root) {
-        if (root) {
-            this.postOrder(root.left)
-            this.postOrder(root.right)
-            console.log(root.data);
+    inOrder(root) {
+        if (root === null)
+            return null
+        else {
+            this.inOrder(root.left)
+            console.log(root.value);
+            this.inOrder(root.right)
         }
     }
 
+    postOrder(root) {
+        if (root === null)
+            return null
+        else {
+            this.postOrder(root.left)
+            this.postOrder(root.right)
+            console.log(root.value);
+        }
+
+    }
+
     bfs() {
-        const queue = []
+        let queue = []
         queue.push(this.root)
-        while (queue.length) {
-            let current = queue.shift()
-            console.log(current.data);
-            if (current.left)
-                queue.push(current.left)
-            if (current.right)
-                queue.push(current.right)
+        while (queue.length !== 0) {
+            let currentNode = queue.shift()
+            console.log(currentNode.value);
+            if (currentNode.left)
+                queue.push(currentNode.left)
+            if (currentNode.right)
+                queue.push(currentNode.right)
         }
     }
 
     min(root) {
-        if (!root.left)
-            return root.data
+        if (root.left === null)
+            return root.value
         else
             return this.min(root.left)
     }
 
     max(root) {
-        if (!root.right)
-            return root.data
+        if (root.right === null)
+            return root.value
         else
             return this.max(root.right)
+    }
+
+    maxDepth(root) {
+        if (root === null)
+            return 0
+        else {
+            let leftDepth = this.maxDepth(root.left)
+            let rightDepth = this.maxDepth(root.right)
+
+            return Math.max(leftDepth, rightDepth) + 1
+        }
     }
 
     remove(value) {
@@ -111,52 +469,56 @@ class BinaryTree {
     removeHelper(root, value) {
         if (root === null)
             return root
-
-        if (value < root.data)
+        if (value < root.value)
             root.left = this.removeHelper(root.left, value)
-        else if (value > root.data)
+        else if (value > root.value)
             root.right = this.removeHelper(root.right, value)
         else {
             if (!root.left && !root.right)
                 return null
             if (!root.left)
                 return root.right
-            else if (!root.right)
+            if (!root.right)
                 return root.left
-            root.data = this.min(root.right)
-            root.right = this.removeHelper(root.right, root.data)
+            root.value = this.min(root.right)
+            root.right = this.removeHelper(root.right, root.value)
         }
         return root
     }
+
+    isBST(root, min = null, max = null) {
+        if (!root)
+            return true
+        if ((min !== null && root.value <= min) || (max !== null && root.value >= max))
+            return false
+        if ((!this.isBST(root.left, min, root.value) || (!this.isBST(root.right, root.value, max))))
+            return false
+        return true
+    }
 }
 
-const bst = new BinaryTree()
-console.log(bst.isEmpty());
+const bst = new BinarySearchTree()
 bst.insert(10)
-bst.insert(20)
-bst.insert(9)
-bst.insert(5)
-bst.insert(11)
-console.log(bst.isEmpty());
+bst.insert(15)
+bst.insert(7)
+bst.insert(8)
+bst.insert(16)
+console.log(bst.search(bst.root, 144));
 
-
-console.log(bst.search(bst.root, 10))
-console.log(bst.search(bst.root, 20))
-console.log(bst.search(bst.root, 9))
-console.log(bst.search(bst.root, 7));
-
-console.log("InOrder");
-bst.inOrder(bst.root)
-
-console.log("PreOrder");
+console.log("preOrder");
 bst.preOrder(bst.root)
 
-console.log("PostOrder");
+console.log("inOrder");
+bst.inOrder(bst.root)
+
+console.log("postOrder");
 bst.postOrder(bst.root)
-
-bst.remove(10)
-
+bst.remove(7)
 console.log("BFS");
 bst.bfs()
 
-console.log("minimum ",bst.min(bst.root));
+
+console.log("MIN", bst.min(bst.root));
+console.log("MAX", bst.max(bst.root));
+
+console.log("MaxDepth", bst.maxDepth(bst.root));
