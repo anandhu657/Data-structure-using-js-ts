@@ -495,30 +495,100 @@ class BinarySearchTree {
             return false
         return true
     }
+
+    isComplete(root) {
+        if (root === null)
+            return true
+        let queue = []
+        let flag = false
+        queue.push(root)
+        while (queue.length != 0) {
+            let tempNode = queue.shift()
+            if (tempNode.left != null) {
+                if (flag == true)
+                    return false
+                queue.push(tempNode.left)
+            } else
+                flag = true
+            if (tempNode.right != null) {
+                if (flag == true)
+                    return false
+                queue.push(tempNode.right)
+            } else
+                flag = true
+        }
+        return true
+    }
+
+    isFull(root) {
+        if (root === null)
+            return true
+        if (root.left === null && root.right === null)
+            return true
+        if ((root.left != null) && (root.right != null))
+            return (this.isFull(root.left) && this.isFull(root.right))
+        return false
+    }
+}
+
+function isIdentical(root1, root2) {
+    if (root1 === null && root2 === null)
+        return true
+    if (root1 != null && root2 != null)
+        return (root1.value === root2.value && isIdentical(root1.left, root2.left) &&
+            isIdentical(root1.right, root2.right))
+    return false
 }
 
 const bst = new BinarySearchTree()
 bst.insert(10)
 bst.insert(15)
+bst.insert(16)
+bst.insert(12)
 bst.insert(7)
 bst.insert(8)
-bst.insert(16)
-console.log(bst.search(bst.root, 144));
+bst.insert(5)
 
-console.log("preOrder");
-bst.preOrder(bst.root)
+const bst2 = new BinarySearchTree()
+bst2.insert(10)
+bst2.insert(15)
+bst2.insert(16)
+bst2.insert(12)
+bst2.insert(7)
+bst2.insert(8)
+bst2.insert(5)
+// console.log(bst.search(bst.root, 144));
 
-console.log("inOrder");
-bst.inOrder(bst.root)
+// console.log("preOrder");
+// bst.preOrder(bst.root)
 
-console.log("postOrder");
-bst.postOrder(bst.root)
-bst.remove(7)
-console.log("BFS");
-bst.bfs()
+// console.log("inOrder");
+// bst.inOrder(bst.root)
+
+// console.log("postOrder");
+// bst.postOrder(bst.root)
+// // bst.remove(7)
+// console.log("BFS");
+// bst.bfs()
 
 
-console.log("MIN", bst.min(bst.root));
-console.log("MAX", bst.max(bst.root));
+// console.log("MIN", bst.min(bst.root));
+// console.log("MAX", bst.max(bst.root));
+// console.log("isBST", bst.isBST(bst.root));
+// console.log("MaxDepth", bst.maxDepth(bst.root));
 
-console.log("MaxDepth", bst.maxDepth(bst.root));
+// if (bst.isComplete(bst.root) == true)
+//     console.log("Complete binary tree");
+// else
+//     console.log("Not complete binary tree");
+
+// if (bst.isFull(bst.root))
+//     console.log("Binary tree is full");
+// else
+//     console.log("Binary tree is not full");
+
+if (isIdentical(bst.root, bst2.root))
+    console.log("Both are identical");
+else
+    console.log("Trees are not identical");
+// console.log(treeify.asTree(bst, true));
